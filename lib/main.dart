@@ -52,12 +52,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   bool _visible = false;
 
-  void _incrementCounter() {
-    setState(() {
-      _visible = !_visible;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,18 +62,19 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            if(_visible)
-              Text(
-                'Hello World',
-                style: Theme.of(context).textTheme.headline4,
-              ),
+            Text(
+              'Hello World',
+              style: Theme.of(context).textTheme.headline4,
+            ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: _visible ? Icon(Icons.remove): Icon(Icons.add),
+        onPressed: () {
+          Navigator.pushNamed(context, '/camera');
+        },
+        tooltip: 'Take a picture',
+        child: Icon(Icons.photo_camera),
       ),
     );
   }
